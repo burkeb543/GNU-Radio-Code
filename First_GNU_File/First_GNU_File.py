@@ -128,12 +128,12 @@ class First_GNU_File(gr.top_block, Qt.QWidget):
         self.digital_ofdm_tx_0 = digital.ofdm_tx(
             fft_len=fft_len,
             cp_len=(fft_len//4),
-            packet_length_tag_key='packet_len',
+            packet_length_tag_key="len_tag_key",
             occupied_carriers=((-4,-3,-2,-1,1,2,3,4),),
             pilot_carriers=((-6,-5,5,6),),
             pilot_symbols=((-1,1,-1,1),),
-            sync_word1=(),
-            sync_word2=(),
+            sync_word1=None,
+            sync_word2=None,
             bps_header=1,
             bps_payload=2,
             rolloff=0,
@@ -146,8 +146,8 @@ class First_GNU_File(gr.top_block, Qt.QWidget):
             occupied_carriers=((-4,-3,-2,-1,1,2,3,4),),
             pilot_carriers=((-6,-5,5,6),),
             pilot_symbols=((-1,1,-1,1),),
-            sync_word1=(),
-            sync_word2=(),
+            sync_word1=None,
+            sync_word2=None,
             bps_header=1,
             bps_payload=2,
             debug_log=False,
@@ -160,7 +160,7 @@ class First_GNU_File(gr.top_block, Qt.QWidget):
             noise_seed=0,
             block_tags=False)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_char*1, samp_rate,True)
-        self.blocks_stream_to_tagged_stream_0 = blocks.stream_to_tagged_stream(gr.sizeof_char, 1, packet_len, "packet_len")
+        self.blocks_stream_to_tagged_stream_0 = blocks.stream_to_tagged_stream(gr.sizeof_char, 1, 12, "len_tag_key")
         self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, 'C:\\Users\\burke\\OneDrive\\Desktop\\Uni\\4E2\\Test.txt', True, 0, 0)
         self.blocks_file_source_0.set_begin_tag(pmt.PMT_NIL)
         self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, 'C:\\Users\\burke\\OneDrive\\Desktop\\Uni\\4E2\\Test_Output.txt', False)
@@ -200,8 +200,6 @@ class First_GNU_File(gr.top_block, Qt.QWidget):
 
     def set_packet_len(self, packet_len):
         self.packet_len = packet_len
-        self.blocks_stream_to_tagged_stream_0.set_packet_len(self.packet_len)
-        self.blocks_stream_to_tagged_stream_0.set_packet_len_pmt(self.packet_len)
 
     def get_fft_len(self):
         return self.fft_len
