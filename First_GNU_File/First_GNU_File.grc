@@ -22,7 +22,7 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: Not titled yet
+    title: First_GNU_File
     window_size: (1000,1000)
   states:
     bus_sink: false
@@ -61,7 +61,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '2400'
+    value: '1200'
   states:
     bus_sink: false
     bus_source: false
@@ -78,13 +78,13 @@ blocks:
     comment: ''
     file: C:\Users\burke\OneDrive\Desktop\Uni\4E2\Test_Output.txt
     type: byte
-    unbuffered: 'False'
+    unbuffered: 'True'
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1256, 320.0]
+    coordinate: [600, 352.0]
     rotation: 0
     state: true
 - name: blocks_file_source_0
@@ -125,7 +125,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [376, 168.0]
+    coordinate: [344, 168.0]
     rotation: 0
     state: true
 - name: blocks_throttle_0
@@ -144,7 +144,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [208, 176.0]
+    coordinate: [192, 176.0]
     rotation: 0
     state: true
 - name: channels_channel_model_0
@@ -165,7 +165,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [784, 296.0]
+    coordinate: [184, 328.0]
     rotation: 0
     state: true
 - name: digital_ofdm_rx_0
@@ -192,7 +192,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1016, 296.0]
+    coordinate: [384, 300.0]
     rotation: 0
     state: true
 - name: digital_ofdm_tx_0
@@ -220,7 +220,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [608, 128.0]
+    coordinate: [544, 100.0]
     rotation: 0
     state: true
 - name: qtgui_freq_sink_x_0
@@ -301,7 +301,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [776, 24.0]
+    coordinate: [736, 24.0]
     rotation: 0
     state: true
 

@@ -76,7 +76,7 @@ class First_GNU_File(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.samp_rate = samp_rate = 2400
+        self.samp_rate = samp_rate = 1200
         self.packet_len = packet_len = 12
         self.fft_len = fft_len = 64
 
@@ -164,7 +164,7 @@ class First_GNU_File(gr.top_block, Qt.QWidget):
         self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, 'C:\\Users\\burke\\OneDrive\\Desktop\\Uni\\4E2\\Test.txt', True, 0, 0)
         self.blocks_file_source_0.set_begin_tag(pmt.PMT_NIL)
         self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, 'C:\\Users\\burke\\OneDrive\\Desktop\\Uni\\4E2\\Test_Output.txt', False)
-        self.blocks_file_sink_0.set_unbuffered(False)
+        self.blocks_file_sink_0.set_unbuffered(True)
 
 
         ##################################################
