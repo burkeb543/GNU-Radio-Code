@@ -42,14 +42,14 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [416, 16.0]
+    coordinate: [424, 16.0]
     rotation: 0
     state: true
 - name: packet_len
   id: variable
   parameters:
     comment: ''
-    value: '36'
+    value: '12'
   states:
     bus_sink: false
     bus_source: false
@@ -78,13 +78,13 @@ blocks:
     comment: ''
     file: C:\Users\burke\OneDrive\Desktop\Uni\4E2\Test_Output.txt
     type: byte
-    unbuffered: 'True'
+    unbuffered: 'False'
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [600, 352.0]
+    coordinate: [608, 360.0]
     rotation: 0
     state: true
 - name: blocks_file_source_0
@@ -99,7 +99,7 @@ blocks:
     maxoutbuf: '0'
     minoutbuf: ' 0'
     offset: '0'
-    repeat: 'True'
+    repeat: 'False'
     type: byte
     vlen: '1'
   states:
@@ -165,7 +165,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [184, 328.0]
+    coordinate: [184, 336.0]
     rotation: 0
     state: true
 - name: digital_ofdm_rx_0
@@ -192,7 +192,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [384, 300.0]
+    coordinate: [384, 308.0]
     rotation: 0
     state: true
 - name: digital_ofdm_tx_0
