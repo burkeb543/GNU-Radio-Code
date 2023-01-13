@@ -107,7 +107,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '50'
+    value: '96'
   states:
     bus_sink: false
     bus_source: false
@@ -136,14 +136,14 @@ blocks:
     len_tag_key: '"packet_len"'
     maxoutbuf: '0'
     minoutbuf: '0'
-    packet_len: '50'
+    packet_len: packet_len
     type: byte
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [232, 200.0]
+    coordinate: [232, 208.0]
     rotation: 0
     state: true
 - name: blocks_tag_debug_0
@@ -184,6 +184,25 @@ blocks:
     coordinate: [48, 416.0]
     rotation: 0
     state: true
+- name: blocks_throttle_1
+  id: blocks_throttle
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    ignoretag: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_second: samp_rate
+    type: byte
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [64, 216.0]
+    rotation: 0
+    state: true
 - name: blocks_vector_source_x_0
   id: blocks_vector_source_x
   parameters:
@@ -195,13 +214,13 @@ blocks:
     repeat: 'True'
     tags: '[]'
     type: byte
-    vector: range(0, 50)
+    vector: (1, 0, 1)
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [48, 192.0]
+    coordinate: [24, 120.0]
     rotation: 0
     state: true
 - name: channels_channel_model_0
@@ -222,7 +241,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [704, 192.0]
+    coordinate: [760, 184.0]
     rotation: 0
     state: true
 - name: digital_ofdm_rx_0
@@ -231,17 +250,17 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    cp_len: '16'
-    fft_len: '64'
-    header_mod: '"BPSK"'
+    cp_len: fft_len//4
+    fft_len: fft_len
+    header_mod: '"QPSK"'
     log: 'False'
     maxoutbuf: '0'
     minoutbuf: '0'
     occupied_carriers: ((-4,-3,-2,-1,1,2,3,4),)
     packet_len_key: '"rx_len"'
-    payload_mod: '"QPSK"'
+    payload_mod: '"8-PSK"'
     pilot_carriers: ((-6,-5,5,6),)
-    pilot_symbols: ((-1,1,-1,1),)
+    pilot_symbols: ((1,-1,1,-1),)
     scramble_bits: 'False'
     sync_word1: None
     sync_word2: None
@@ -249,7 +268,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [264, 352.0]
+    coordinate: [288, 332.0]
     rotation: 0
     state: true
 - name: digital_ofdm_tx_0
@@ -258,17 +277,17 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    cp_len: '16'
-    fft_len: '64'
-    header_mod: '"BPSK"'
+    cp_len: fft_len//4
+    fft_len: fft_len
+    header_mod: '"QPSK"'
     log: 'False'
     maxoutbuf: '0'
     minoutbuf: '0'
     occupied_carriers: ((-4,-3,-2,-1,1,2,3,4),)
     packet_len_key: packet_len
-    payload_mod: '"QPSK"'
+    payload_mod: '"8-PSK"'
     pilot_carriers: ((-6,-5,5,6),)
-    pilot_symbols: ((-1,1,-1,1),)
+    pilot_symbols: ((1,-1,1,-1),)
     rolloff: '0'
     scramble_bits: 'False'
     sync_word1: None
@@ -277,7 +296,99 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [440, 160.0]
+    coordinate: [488, 148.0]
+    rotation: 0
+    state: true
+- name: qtgui_const_sink_x_0
+  id: qtgui_const_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'True'
+    axislabels: 'True'
+    color1: '"blue"'
+    color10: '"red"'
+    color2: '"red"'
+    color3: '"red"'
+    color4: '"red"'
+    color5: '"red"'
+    color6: '"red"'
+    color7: '"red"'
+    color8: '"red"'
+    color9: '"red"'
+    comment: ''
+    grid: 'False'
+    gui_hint: ''
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'True'
+    marker1: '0'
+    marker10: '0'
+    marker2: '0'
+    marker3: '0'
+    marker4: '0'
+    marker5: '0'
+    marker6: '0'
+    marker7: '0'
+    marker8: '0'
+    marker9: '0'
+    name: '""'
+    nconnections: '1'
+    size: '1024'
+    style1: '0'
+    style10: '0'
+    style2: '0'
+    style3: '0'
+    style4: '0'
+    style5: '0'
+    style6: '0'
+    style7: '0'
+    style8: '0'
+    style9: '0'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    xmax: '2'
+    xmin: '-2'
+    ymax: '2'
+    ymin: '-2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [696, 344.0]
     rotation: 0
     state: true
 - name: qtgui_freq_sink_x_0
@@ -447,11 +558,13 @@ connections:
 - [blocks_stream_to_tagged_stream_0, '0', digital_ofdm_tx_0, '0']
 - [blocks_throttle_0, '0', digital_ofdm_rx_0, '0']
 - [blocks_throttle_0, '0', qtgui_freq_sink_x_0, '0']
-- [blocks_vector_source_x_0, '0', blocks_stream_to_tagged_stream_0, '0']
+- [blocks_throttle_1, '0', blocks_stream_to_tagged_stream_0, '0']
+- [blocks_vector_source_x_0, '0', blocks_throttle_1, '0']
 - [channels_channel_model_0, '0', blocks_throttle_0, '0']
 - [channels_channel_model_0, '0', qtgui_freq_sink_x_0_0, '0']
 - [digital_ofdm_rx_0, '0', blocks_tag_debug_0, '0']
 - [digital_ofdm_tx_0, '0', channels_channel_model_0, '0']
+- [digital_ofdm_tx_0, '0', qtgui_const_sink_x_0, '0']
 
 metadata:
   file_format: 1

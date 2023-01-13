@@ -68,7 +68,7 @@ blocks:
     min: '0'
     minoutbuf: '0'
     num_samps: '1000'
-    repeat: 'True'
+    repeat: 'False'
     type: byte
   states:
     bus_sink: false

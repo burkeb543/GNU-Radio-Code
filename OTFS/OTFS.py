@@ -87,7 +87,6 @@ class OTFS(gr.top_block, Qt.QWidget):
         # Blocks
         ##################################################
         self.zeromq_sub_source_0 = zeromq.sub_source(gr.sizeof_float, 1, 'tcp://127.0.0.1:50001', 100, False, (-1), '0')
-        self.zeromq_pub_sink_0 = zeromq.pub_sink(gr.sizeof_float, 1, 'tcp://127.0.0.1:50001', 100, False, (-1), '')
         self.qtgui_time_sink_x_1 = qtgui.time_sink_c(
             1024, #size
             samp_rate, #samp_rate
@@ -416,7 +415,7 @@ class OTFS(gr.top_block, Qt.QWidget):
         self.analog_sig_source_x_1 = analog.sig_source_f(samp_rate, analog.GR_COS_WAVE, 1000, 1, 0, 0)
         self.analog_sig_source_x_0_0 = analog.sig_source_f(samp_rate, analog.GR_COS_WAVE, 1000, 1, 0, 0)
         self.analog_sig_source_x_0 = analog.sig_source_f(samp_rate, analog.GR_COS_WAVE, 1000, 1, 0, 0)
-        self.analog_random_source_x_0 = blocks.vector_source_b(list(map(int, numpy.random.randint(0, 2, 1000))), True)
+        self.analog_random_source_x_0 = blocks.vector_source_b(list(map(int, numpy.random.randint(0, 2, 1000))), False)
 
 
         ##################################################
@@ -428,7 +427,6 @@ class OTFS(gr.top_block, Qt.QWidget):
         self.connect((self.analog_sig_source_x_1, 0), (self.blocks_multiply_xx_0, 0))
         self.connect((self.analog_sig_source_x_1_0, 0), (self.blocks_multiply_xx_0_0, 0))
         self.connect((self.blocks_add_xx_0, 0), (self.qtgui_time_sink_x_0, 0))
-        self.connect((self.blocks_add_xx_0, 0), (self.zeromq_pub_sink_0, 0))
         self.connect((self.blocks_complex_to_float_0, 0), (self.blocks_multiply_xx_0, 1))
         self.connect((self.blocks_complex_to_float_0, 1), (self.blocks_multiply_xx_1, 0))
         self.connect((self.blocks_float_to_complex_0, 0), (self.blocks_stream_to_vector_0_0, 0))

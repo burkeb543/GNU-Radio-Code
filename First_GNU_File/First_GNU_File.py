@@ -76,7 +76,10 @@ class First_GNU_File(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.samp_rate = samp_rate = 32000
-        self.packet_len = packet_len = 50
+        self.pilot_symbols = pilot_symbols = ((1, -1, 1, -1,),)
+        self.pilot_carriers = pilot_carriers = ((-21, -7, 7, 21,),)
+        self.packet_len = packet_len = 14
+        self.occupied_carriers = occupied_carriers = (list(range(-26, -21)) + list(range(-20, -7)) + list(range(-6, 0)) + list(range(1, 7)) + list(range(8, 21)) + list(range(22, 27)),)
         self.len_tag_key = len_tag_key = 50
         self.fft_len = fft_len = 64
 
@@ -147,7 +150,7 @@ class First_GNU_File(gr.top_block, Qt.QWidget):
         self.qtgui_freq_sink_x_0.set_y_axis((-140), 10)
         self.qtgui_freq_sink_x_0.set_y_label('Relative Gain', 'dB')
         self.qtgui_freq_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
-        self.qtgui_freq_sink_x_0.enable_autoscale(False)
+        self.qtgui_freq_sink_x_0.enable_autoscale(True)
         self.qtgui_freq_sink_x_0.enable_grid(False)
         self.qtgui_freq_sink_x_0.set_fft_average(1.0)
         self.qtgui_freq_sink_x_0.enable_axis_labels(True)
@@ -176,27 +179,107 @@ class First_GNU_File(gr.top_block, Qt.QWidget):
 
         self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.qwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_freq_sink_x_0_win)
+        self.qtgui_const_sink_x_0_0 = qtgui.const_sink_c(
+            1024, #size
+            "", #name
+            1, #number of inputs
+            None # parent
+        )
+        self.qtgui_const_sink_x_0_0.set_update_time(0.10)
+        self.qtgui_const_sink_x_0_0.set_y_axis((-2), 2)
+        self.qtgui_const_sink_x_0_0.set_x_axis((-2), 2)
+        self.qtgui_const_sink_x_0_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, "")
+        self.qtgui_const_sink_x_0_0.enable_autoscale(True)
+        self.qtgui_const_sink_x_0_0.enable_grid(False)
+        self.qtgui_const_sink_x_0_0.enable_axis_labels(True)
+
+
+        labels = ['', '', '', '', '',
+            '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1]
+        colors = ["blue", "red", "red", "red", "red",
+            "red", "red", "red", "red", "red"]
+        styles = [0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0]
+        markers = [0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+            1.0, 1.0, 1.0, 1.0, 1.0]
+
+        for i in range(1):
+            if len(labels[i]) == 0:
+                self.qtgui_const_sink_x_0_0.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_const_sink_x_0_0.set_line_label(i, labels[i])
+            self.qtgui_const_sink_x_0_0.set_line_width(i, widths[i])
+            self.qtgui_const_sink_x_0_0.set_line_color(i, colors[i])
+            self.qtgui_const_sink_x_0_0.set_line_style(i, styles[i])
+            self.qtgui_const_sink_x_0_0.set_line_marker(i, markers[i])
+            self.qtgui_const_sink_x_0_0.set_line_alpha(i, alphas[i])
+
+        self._qtgui_const_sink_x_0_0_win = sip.wrapinstance(self.qtgui_const_sink_x_0_0.qwidget(), Qt.QWidget)
+        self.top_layout.addWidget(self._qtgui_const_sink_x_0_0_win)
+        self.qtgui_const_sink_x_0 = qtgui.const_sink_c(
+            1024, #size
+            "", #name
+            1, #number of inputs
+            None # parent
+        )
+        self.qtgui_const_sink_x_0.set_update_time(0.10)
+        self.qtgui_const_sink_x_0.set_y_axis((-2), 2)
+        self.qtgui_const_sink_x_0.set_x_axis((-2), 2)
+        self.qtgui_const_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, "")
+        self.qtgui_const_sink_x_0.enable_autoscale(True)
+        self.qtgui_const_sink_x_0.enable_grid(False)
+        self.qtgui_const_sink_x_0.enable_axis_labels(True)
+
+
+        labels = ['', '', '', '', '',
+            '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1]
+        colors = ["blue", "red", "red", "red", "red",
+            "red", "red", "red", "red", "red"]
+        styles = [0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0]
+        markers = [0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+            1.0, 1.0, 1.0, 1.0, 1.0]
+
+        for i in range(1):
+            if len(labels[i]) == 0:
+                self.qtgui_const_sink_x_0.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_const_sink_x_0.set_line_label(i, labels[i])
+            self.qtgui_const_sink_x_0.set_line_width(i, widths[i])
+            self.qtgui_const_sink_x_0.set_line_color(i, colors[i])
+            self.qtgui_const_sink_x_0.set_line_style(i, styles[i])
+            self.qtgui_const_sink_x_0.set_line_marker(i, markers[i])
+            self.qtgui_const_sink_x_0.set_line_alpha(i, alphas[i])
+
+        self._qtgui_const_sink_x_0_win = sip.wrapinstance(self.qtgui_const_sink_x_0.qwidget(), Qt.QWidget)
+        self.top_layout.addWidget(self._qtgui_const_sink_x_0_win)
         self.digital_ofdm_tx_0 = digital.ofdm_tx(
             fft_len=fft_len,
-            cp_len=(fft_len//4),
+            cp_len=(fft_len//8),
             packet_length_tag_key="len_tag_key",
-            occupied_carriers=((-4,-3,-2,-1,1,2,3,4),),
-            pilot_carriers=((-6,-5,5,6),),
-            pilot_symbols=((-1,1,-1,1),),
-            sync_word1=None,
-            sync_word2=None,
+            occupied_carriers=occupied_carriers,
+            pilot_carriers=pilot_carriers,
+            pilot_symbols=pilot_symbols,
             bps_header=1,
             bps_payload=2,
             rolloff=0,
             debug_log=False,
             scramble_bits=False)
         self.digital_ofdm_rx_0 = digital.ofdm_rx(
-            fft_len=fft_len, cp_len=(fft_len//4),
+            fft_len=fft_len, cp_len=(fft_len//8),
             frame_length_tag_key='frame_'+"packet_len",
             packet_length_tag_key="packet_len",
-            occupied_carriers=((-4,-3,-2,-1,1,2,3,4),),
-            pilot_carriers=((-6,-5,5,6),),
-            pilot_symbols=((-1,1,-1,1),),
+            occupied_carriers=occupied_carriers,
+            pilot_carriers=pilot_carriers,
+            pilot_symbols=pilot_symbols,
             sync_word1=None,
             sync_word2=None,
             bps_header=1,
@@ -223,9 +306,11 @@ class First_GNU_File(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_throttle_0, 0), (self.blocks_stream_to_tagged_stream_0, 0))
         self.connect((self.blocks_vector_source_x_0, 0), (self.blocks_throttle_0, 0))
         self.connect((self.channels_channel_model_0, 0), (self.digital_ofdm_rx_0, 0))
+        self.connect((self.channels_channel_model_0, 0), (self.qtgui_const_sink_x_0_0, 0))
         self.connect((self.channels_channel_model_0, 0), (self.qtgui_time_sink_x_0_0, 0))
         self.connect((self.digital_ofdm_rx_0, 0), (self.blocks_vector_sink_x_0, 0))
         self.connect((self.digital_ofdm_tx_0, 0), (self.channels_channel_model_0, 0))
+        self.connect((self.digital_ofdm_tx_0, 0), (self.qtgui_const_sink_x_0, 0))
         self.connect((self.digital_ofdm_tx_0, 0), (self.qtgui_freq_sink_x_0, 0))
 
 
@@ -246,11 +331,29 @@ class First_GNU_File(gr.top_block, Qt.QWidget):
         self.qtgui_freq_sink_x_0.set_frequency_range(0, self.samp_rate)
         self.qtgui_time_sink_x_0_0.set_samp_rate(self.samp_rate)
 
+    def get_pilot_symbols(self):
+        return self.pilot_symbols
+
+    def set_pilot_symbols(self, pilot_symbols):
+        self.pilot_symbols = pilot_symbols
+
+    def get_pilot_carriers(self):
+        return self.pilot_carriers
+
+    def set_pilot_carriers(self, pilot_carriers):
+        self.pilot_carriers = pilot_carriers
+
     def get_packet_len(self):
         return self.packet_len
 
     def set_packet_len(self, packet_len):
         self.packet_len = packet_len
+
+    def get_occupied_carriers(self):
+        return self.occupied_carriers
+
+    def set_occupied_carriers(self, occupied_carriers):
+        self.occupied_carriers = occupied_carriers
 
     def get_len_tag_key(self):
         return self.len_tag_key
